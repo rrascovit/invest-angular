@@ -30,18 +30,12 @@ export class RedeemInvestmentComponent implements OnInit {
       return this.open(false, msg);
     }
 
-    this.redeemShares.forEach((item) => {
-      if (
-        item.value >
-        (
-          (item.acao.percentual * this.investment.saldoTotalDisponivel) /
-          100
-        ).toFixed(2)
-      ) {
-        const shareValue = (
-          (item.acao.percentual * this.investment.saldoTotalDisponivel) /
-          100
-        ).toFixed(2);
+    this.redeemShares.every((item) => {
+      const shareValue = (
+        (item.acao.percentual * this.investment.saldoTotalDisponivel) /
+        100
+      ).toFixed(2);
+      if (item.value > shareValue) {
         const msg = `Valor invalida da ação ${item.acao.nome}, o máximo disponível é ${shareValue}`;
         return this.open(false, msg);
       }
