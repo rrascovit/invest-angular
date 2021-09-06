@@ -1,0 +1,27 @@
+<header>
+    <h2>Investimentos</h2>
+</header>
+<div class="content">    
+    <div *ngIf="loading" class="progress" style="width: 100%;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%; background-color: gray"></div>
+    </div>
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+        Erro ao carregar os investimentos! Tente novamente.
+    </div>
+    <table *ngIf="!loading && !showError">
+        <tr>
+            <th>Nome</th>
+            <th>Objetivo</th>
+            <th>Saldo total disponível</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let inv of investments">
+            <td>{{ inv.nome }}</td>
+            <td>{{ inv.objetivo }}</td>
+            <td>{{ inv.saldoTotalDisponivel.toFixed(2) | utils:'money' }}</td>
+            <td>
+                <button class="btn btn-secondary btn-sm" (click)="invDetails(inv)" [disabled]="inv.indicadorCarencia == 'S'">Resgate</button>
+            </td>
+        </tr>
+    </table>
+</div>

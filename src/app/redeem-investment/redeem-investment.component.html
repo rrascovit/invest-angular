@@ -1,0 +1,45 @@
+<header>
+    <h2>Resgate</h2>
+    <button class="btn btn-outline-dark btn-sm" routerLink="/investment-list" routerLinkActive="active">Voltar</button>
+</header>
+<div class="content">
+    <h3>Dados do investimento</h3>
+    <div class="card">
+        <div>
+            <p>Nome:</p>
+            <h6 style="text-transform: capitalize;">{{ investment.nome }}</h6>
+        </div>
+        <div class="separator"></div>
+        <div>
+            <p>Saldo total disponível:</p>
+            <h6>{{ investment.saldoTotalDisponivel.toFixed(2) | utils:'money' }}</h6>
+        </div>
+        <div class="separator"></div>
+        <div>
+            <p>Valor total a resgatar:</p>
+            <h6>{{ totalValue.toFixed(2) | utils:'money' }}</h6>
+        </div>
+    </div>
+
+    <h3>Resgate do seu jeito</h3>
+    <table>
+        <tr>
+            <th>Ação</th>
+            <th>Saldo Acumulado</th>
+            <th>Valor a resgatar</th>
+        </tr>
+        <tr *ngFor="let acao of investment.acoes; let i = index" [attr.data-index]="i">
+            <td>{{ acao.nome }}</td>
+            <td>
+                {{ ((acao.percentual*investment.saldoTotalDisponivel)/100).toFixed(2) | utils:'money' }}
+            </td>
+            <td>
+                
+                <input class="form-control" type="text" (keyup)="onKey(acao, $event)" mask="separator.2" thousandSeparator="." prefix="R$ ">
+            </td>
+        </tr>
+    </table>
+</div>
+<footer>
+    <button class="btn btn-primary btn-sm" (click)="validateRedeem()">Confirmar resgate</button>
+</footer>
