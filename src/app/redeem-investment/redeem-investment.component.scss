@@ -38,9 +38,9 @@ header {
 }
 
 .separator {
-    border-left: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
-    margin: 8px 0;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  margin: 8px 0;
 }
 
 table {
@@ -59,6 +59,12 @@ th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.errorMessage {
+  text-align: end;
+  color: red;
+  margin-right: 8px;
 }
 
 footer {

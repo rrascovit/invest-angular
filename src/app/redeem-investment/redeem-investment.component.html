@@ -33,9 +33,12 @@
             <td>
                 {{ ((acao.percentual*investment.saldoTotalDisponivel)/100).toFixed(2) | utils:'money' }}
             </td>
-            <td>
-                
+            <td>                
                 <input class="form-control" type="text" (keyup)="onKey(acao, $event)" mask="separator.2" thousandSeparator="." prefix="R$ ">
+                <div *ngFor="let message of msg">
+                    <p *ngIf="acao.id == message.id && message.text" class="errorMessage">Valor inválido</p>
+                </div>
+                
             </td>
         </tr>
     </table>

@@ -9,8 +9,8 @@
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
-    <p>{{ msg }}</p>
+<div style="padding: 0 1rem;" class="modal-body" *ngFor="let message of msg">
+    <p style="margin: 1rem 0">{{ message.text }}</p>
 </div>
 <div class="modal-footer">
     <button *ngIf="isValid" class="btn btn-success btn-sm" (click)="success()">
